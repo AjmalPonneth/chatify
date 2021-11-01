@@ -60,8 +60,9 @@
         </div>
       </div>
     </section>
-
+    {{room_name|json_script:"room_name"}}
     <script>
+      const roomName = JSON.parse(document.getElementById())
       const chatSocket = new WebSocket(
         "ws://" + window.location.host + "ws/chat/" + roomName + "/"
       )

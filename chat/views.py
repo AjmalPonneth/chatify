@@ -8,6 +8,5 @@ def index(request):
 
 
 def room(request, room_name):
-    return render(request, 'chatroom.html', {
-        'room_name': room_name
-    })
+    username = request.GET.get('username', 'Anonymous')
+    return render(request, 'chatroom.html', {'room_name': room_name, 'username': username})
