@@ -9,6 +9,11 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css"
     />
+    <style>
+      #error {
+        color: red;
+      }
+    </style>
   </head>
   <body>
     <section class="section">
@@ -18,7 +23,7 @@
             <section class="hero is-primary">
               <div class="hero-body">
                 <p class="title">Chatify</p>
-                <p class="subtitle"></p>
+                <p class="subtitle">Make your chats more easy and secure :D</p>
               </div>
             </section>
           </div>
@@ -35,6 +40,7 @@
                   id="room-name-input"
                 />
               </div>
+              <div id="error"></div>
             </div>
 
             <div class="field">
@@ -64,8 +70,13 @@
       document.querySelector("#room-name-submit").onclick = function (e) {
         var roomName = document.querySelector("#room-name-input").value
         var userName = document.querySelector("#username-input").value
-
-        window.location.replace(roomName + "/?username=" + userName)
+        if (roomName == "" || roomName == null) {
+          document.getElementById("error").textContent =
+            "You should specify atleast room name!"
+        } else {
+          document.getElementById("error").textContent = ""
+          window.location.replace(roomName + "/?username=" + userName)
+        }
       }
     </script>
   </body>
