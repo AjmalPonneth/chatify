@@ -77,7 +77,7 @@
         document.getElementById("json-username").textContent
       )
       let ws = "ws://"
-      if (location.protocol == "https://") {
+      if (location.protocol == "https:") {
         ws = "wss://"
       }
       let url = ws + window.location.host + "/ws/" + roomName + "/"
