@@ -70,12 +70,11 @@
       document.querySelector("#room-name-submit").onclick = function (e) {
         var roomName = document.querySelector("#room-name-input").value
         var userName = document.querySelector("#username-input").value
-        if (roomName == "" || roomName == null) {
-          document.getElementById("error").textContent =
-            "You should specify atleast room name!"
+        if (roomName == "" || roomName == "") {
+          alert("you should specify both fields!")
         } else {
-          document.getElementById("error").textContent = ""
-          window.location.replace(roomName + "/?username=" + userName)
+    
+          window.location.replace("chat/" + roomName + "/?username=" + userName)
         }
       }
     </script>
