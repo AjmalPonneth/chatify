@@ -119,9 +119,12 @@
       const username = JSON.parse(
         document.getElementById("json-username").textContent
       )
-      const chatSocket = new WebSocket(
-        "ws://" + window.location.host + "/ws/" + roomName + "/"
-      )
+      let ws = "ws://"
+      if (location.protocol == "https:") {
+        ws = "wss://"
+      }
+      let url = ws + window.location.host + "/ws/" + roomName + "/"
+      const chatSocket = new WebSocket(url)
 
       chatSocket.onmessage = function (e) {
         const data = JSON.parse(e.data)
