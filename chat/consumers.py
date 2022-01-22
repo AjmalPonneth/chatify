@@ -13,6 +13,10 @@ class ChatRoomConsumer(AsyncWebsocketConsumer):
             self.channel_name
         )
         await self.accept()
+        await self.send(text_data=json.dumps({
+            'type': 'connected',
+            'message': 'Your are now connected'
+        }))
 
     async def disconnect(self, close_code):
         # leave room

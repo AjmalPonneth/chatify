@@ -77,11 +77,7 @@
                 id="chat-messages"
                 style="max-height: 300px; overflow-y: scroll"
               >
-                <div id="typing" class="dotsContainer">
-                  <span id="dot1"></span>
-                  <span id="dot2"></span>
-                  <span id="dot3"></span>
-                </div>
+                <p style="text-align: center" id="connection-message"></p>
               </div>
             </div>
 
@@ -130,10 +126,12 @@
       chatSocket.onmessage = function (e) {
         const data = JSON.parse(e.data)
 
-        if (data.message) {
-          let audio = new Audio("{% static 'audio.mp3'%}").play()
+        if (data.type != "connected") {
           document.querySelector("#chat-messages").innerHTML +=
             "<b>" + data.username + "</b>: " + data.message + "<br>"
+        } else {
+          document.querySelector("#connection-message").textContent =
+            data.message
         }
         scrollToBottom()
       }
@@ -155,6 +153,12 @@
           )
         }
         messageInputDom.value = ""
+      }
+      document.querySelector("#chat-message-input").focus()
+      document.querySelector("#chat-message-input").onkeyup = function (e) {
+        if (e.keyCode === 13) {
+          document.querySelector("#chat-message-submit").click()
+        }
       }
     </script>
   </body>
